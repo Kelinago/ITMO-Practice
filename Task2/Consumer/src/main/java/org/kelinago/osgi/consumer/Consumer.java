@@ -3,7 +3,7 @@ package org.kelinago.osgi.consumer;
 import org.kelinago.osgi.provider.able.Provider;
 
 /**
- * Consumer class emulates consuming IProvider service
+ * Consumer class emulates consuming Provider service
  *
  * @author Maxim Pyshnyy
  * @version 1.0
