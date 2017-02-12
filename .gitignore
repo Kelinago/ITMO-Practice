@@ -1,3 +1,9 @@
+felix-framework-*/
+.idea/
+target/
+*.jar
+*.iml
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
@@ -45,3 +51,4 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+~$_ITMO_practice_task_OSGi.docx
