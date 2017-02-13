@@ -4,16 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>OSGi-practice</groupId>
-    <artifactId>Provider</artifactId>
+    <groupId>ITMO-Practice</groupId>
+    <artifactId>Task2-Provider</artifactId>
     <version>1.0</version>
     <packaging>bundle</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>org.osgi</groupId>
+            <groupId>org.apache.felix</groupId>
             <artifactId>org.osgi.core</artifactId>
-            <version>4.3.1</version>
+            <version>1.4.0</version>
         </dependency>
     </dependencies>
 
@@ -24,12 +24,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-            </plugin>
-
-            <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
                 <version>3.2.0</version>
@@ -37,7 +31,8 @@
                 <configuration>
                     <buildDirectory>D:/OwnProjects/Practice/Task2/</buildDirectory>
                     <instructions>
-                        <Bundle-SymbolicName>Provider</Bundle-SymbolicName>
+                        <Bundle-Name>${project.name}</Bundle-Name>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Export-Package>org.kelinago.osgi.provider.able</Export-Package>
                         <Bundle-Activator>org.kelinago.osgi.provider.ServiceActivator</Bundle-Activator>
                     </instructions>

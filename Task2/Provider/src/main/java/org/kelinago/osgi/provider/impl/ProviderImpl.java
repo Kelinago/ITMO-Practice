@@ -4,8 +4,9 @@ import org.kelinago.osgi.provider.able.Provider;
 
 /**
  * Simple Provider implementation
- * @version 1.0
+ *
  * @author Maxim Pyshnyy
+ * @version 1.0
  */
 public class ProviderImpl implements Provider {
     /**

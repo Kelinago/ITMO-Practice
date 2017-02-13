@@ -1,16 +1,28 @@
 package com.kelinago.samples.osgi;
 
-import com.keliango.samples.osgi.able.IGreetable;
-import org.apache.felix.scr.annotations.*;
+import com.keliango.samples.osgi.able.Greeter;
+import org.apache.felix.scr.annotations.Activate;
+import org.apache.felix.scr.annotations.Component;
+import org.apache.felix.scr.annotations.Reference;
+import org.apache.felix.scr.annotations.Service;
 
-@Component(name = "Consumer Component", immediate = true)
-@Service(value = Consumer.class)
+/**
+ * Greeter service consumer
+ */
+@Component (name = "Consumer Component", immediate = true)
+@Service (value = Consumer.class)
 public class Consumer {
-    @Reference(cardinality = ReferenceCardinality.OPTIONAL_UNARY, policy = ReferencePolicy.DYNAMIC)
-    private volatile IGreetable greeter;
-
+    /**
+     * Greeter service reference
+     */
+    @Reference
+    private Greeter greeter;
+    
+    /**
+     * Runs when consumer start
+     */
     @Activate
-    public void activate(){
+    public void activate() {
         this.greeter.sayHello();
     }
 }

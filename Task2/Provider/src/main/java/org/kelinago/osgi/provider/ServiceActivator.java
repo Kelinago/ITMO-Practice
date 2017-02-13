@@ -8,8 +8,9 @@ import org.osgi.framework.ServiceRegistration;
 
 /**
  * ProviderImpl service activator
- * @version 1.0
+ *
  * @author Maxim Pyshnyy
+ * @version 1.0
  */
 public class ServiceActivator implements BundleActivator {
     /**
@@ -19,6 +20,7 @@ public class ServiceActivator implements BundleActivator {
     
     /**
      * Service registration
+     *
      * @param bundleContext
      * @throws Exception
      */
@@ -28,6 +30,7 @@ public class ServiceActivator implements BundleActivator {
     
     /**
      * Unregister service
+     *
      * @param bundleContext
      * @throws Exception
      */
