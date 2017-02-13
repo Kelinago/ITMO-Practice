@@ -1,16 +1,12 @@
 package com.kelinago.samples.osgi;
 
 import com.keliango.samples.osgi.able.Greeter;
-import org.apache.felix.scr.annotations.Activate;
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Reference;
-import org.apache.felix.scr.annotations.Service;
+import org.apache.felix.scr.annotations.*;
 
 /**
  * Greeter service consumer
  */
-@Component (name = "Consumer Component", immediate = true)
-@Service (value = Consumer.class)
+@Component (name = "Consumer Component")
 public class Consumer {
     /**
      * Greeter service reference

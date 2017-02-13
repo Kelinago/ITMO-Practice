@@ -11,7 +11,7 @@ import org.apache.felix.scr.annotations.Service;
  * @version 1.0
  */
 @Component (name = "SimpleGreeter")
-@Service (value = com.keliango.samples.osgi.able.Greeter.class)
+@Service (value = Greeter.class)
 public class SimpleGreeter implements Greeter {
     /**
      * Simple greeting
