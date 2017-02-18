@@ -14,7 +14,7 @@
     <name>AIF News</name>
     <properties>
         <export.package></export.package>
-        <import.package>practice.task5.api</import.package>
+        <import.package>practice.task5.api;org.w3c.dom;javax.xml.parsers;</import.package>
     </properties>
 
     <dependencies>
@@ -24,6 +24,7 @@
             <version>1.0</version>
             <scope>provided</scope>
         </dependency>
+
 
         <dependency>
             <groupId>org.apache.felix</groupId>
@@ -47,6 +48,7 @@
                         <Export-Package>${export.package}</Export-Package>
                         <Embed-Dependency>*;scope=compile;inline=false</Embed-Dependency>
                         <Embed-Transitive>true</Embed-Transitive>
+                        <Embed-StripGroup>true</Embed-StripGroup>
                     </instructions>
                 </configuration>
             </plugin>
