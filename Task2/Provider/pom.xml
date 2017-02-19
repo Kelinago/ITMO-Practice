@@ -35,6 +35,7 @@
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Export-Package>org.kelinago.osgi.provider.able</Export-Package>
                         <Bundle-Activator>org.kelinago.osgi.provider.ServiceActivator</Bundle-Activator>
+                        <Provide-Capability>org.kelinago.osgi.provider.able</Provide-Capability>
                     </instructions>
                 </configuration>
             </plugin>

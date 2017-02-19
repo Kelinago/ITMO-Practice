@@ -60,6 +60,7 @@
                         <Bundle-Name>${project.name}</Bundle-Name>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Import-Package>com.keliango.samples.osgi.able</Import-Package>
+                        <Require-Capability>com.keliango.samples.osgi.able</Require-Capability>
                     </instructions>
                 </configuration>
             </plugin>

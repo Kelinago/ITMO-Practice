@@ -48,6 +48,7 @@
                         <Bundle-Name>${project.name}</Bundle-Name>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Export-Package>com.keliango.samples.osgi.able</Export-Package>
+                        <Provide-Capability>com.keliango.samples.osgi.able</Provide-Capability>
                     </instructions>
                 </configuration>
             </plugin>

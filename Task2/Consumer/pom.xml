@@ -15,6 +15,7 @@
             <artifactId>org.osgi.core</artifactId>
             <version>4.3.1</version>
         </dependency>
+
         <dependency>
             <groupId>ITMO-Practice</groupId>
             <artifactId>Task2-Provider</artifactId>
@@ -39,6 +40,7 @@
                         <Bundle-Name>${project.name}</Bundle-Name>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Activator>org.kelinago.osgi.consumer.Activator</Bundle-Activator>
+                        <Require-Capability>org.kelinago.osgi.provider.able</Require-Capability>
                     </instructions>
                 </configuration>
             </plugin>

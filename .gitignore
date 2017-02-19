@@ -1,7 +1,6 @@
 felix-framework-*/
 .idea/
 target/
-*.jar
 *.iml
 
 # Windows image file caches
