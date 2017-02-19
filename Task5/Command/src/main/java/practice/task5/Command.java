@@ -1,24 +1,20 @@
 package practice.task5;
 
-import org.apache.felix.scr.annotations.*;
-import org.apache.felix.scr.annotations.Properties;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.InvalidSyntaxException;
+import org.osgi.framework.ServiceReference;
 import practice.task5.api.NewsTitles;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
-@Component (name = "NewsStats Command")
-@Service (value = Command.class)
-@Properties ({
-        @Property (name = "osgi.command.scope", value = "news"),
-        @Property (name = "osgi.command.function", value = "stats")
-})
 public class Command {
-    @Reference (cardinality = ReferenceCardinality.OPTIONAL_MULTIPLE,
-            policy = ReferencePolicy.DYNAMIC, bind = "setService", unbind = "unsetService",
-            referenceInterface = NewsTitles.class)
-    private List<NewsTitles> services;
+    private BundleContext bundleContext;
+    private ServiceReference[] services;
+    
+    public Command(BundleContext bundleContext) {
+        this.bundleContext = bundleContext;
+    }
     
     String[] getTenMostFrequentWords(String[] titles) {
         HashMap<String, AtomicInteger> map = new HashMap<>();
@@ -52,30 +48,68 @@ public class Command {
         }
     }
     
-    public void setService(NewsTitles service) {
-        if (services == null) {
-            services = new ArrayList<NewsTitles>();
-        }
-        services.add(service);
-    }
-    
-    public void unsetService(NewsTitles service) {
-        services.remove(service);
-    }
-    
-    /* TODO: Realise user-friendly interface */
     public void stats() {
-        ArrayList<String> words = new ArrayList<>();
-        for (NewsTitles service : services) {
-            Collections.addAll(words, service.getTitles());
+        if (!loadServiceReferences(null)) {
+            return;
         }
-        for (String word : getTenMostFrequentWords((String[]) words.toArray())) {
-            System.out.println(word);
+        int choice;
+        do {
+            System.out.println("Available sources: ");
+            int i = 1;
+            for (ServiceReference source : services) {
+                System.out.printf(" %d. %s (%s)\n",
+                        i++,
+                        source.getProperty("source"),
+                        source.getProperty("sourceURL"));
+            }
+            System.out.printf(" %d. All sources\n", i);
+            System.out.print("  Your choice number: ");
+            Scanner scanner = new Scanner(System.in);
+            choice = scanner.nextInt();
+            if (!(services.length < --choice || choice < 0)) {
+                break;
+            }
+            System.out.println("Source not registered");
+        } while (true);
+        if (choice == services.length) {
+            stats(null);
+        } else {
+            stats((String) services[choice].getProperty("source"));
         }
     }
     
-    /* TODO: Realise stats() with param which define a service */
-    public void stats(String[] params) {
-        services.get(0).getTitles();
+    public void stats(String param) {
+        if (!loadServiceReferences(param)) {
+            return;
+        }
+        
+        ArrayList<String> words = new ArrayList<>();
+        for (ServiceReference service : services) {
+            String[] titles = ((NewsTitles) bundleContext.getService(service)).getTitles();
+            Collections.addAll(words, titles);
+        }
+        System.out.println("Top-10 most frequent words in news titles (based on "
+                + (services.length > 1 ? "all sources API" : services[0].getProperty("source") + " API")
+                + "): ");
+        int i = 1;
+        for (String word : getTenMostFrequentWords(words.toArray(new String[]{}))) {
+            System.out.printf(" %2d. %s\n", i++, word);
+        }
+    }
+    
+    private boolean loadServiceReferences(String param) {
+        try {
+            String filterStr = param == null ? param : "(|(source=" + param + ")(sourceURL=" + param + "))";
+            services = bundleContext.getServiceReferences(NewsTitles.class.getName(), filterStr);
+        } catch (InvalidSyntaxException e) {
+            System.out.println("Invalid filter string syntax");
+            return false;
+        }
+        if (services == null) {
+            System.out.println("There is no active NewsStats services" +
+                    (param == null ? "" : " with source " + param));
+            return false;
+        }
+        return true;
     }
 }

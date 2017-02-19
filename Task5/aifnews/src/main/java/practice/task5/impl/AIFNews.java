@@ -1,6 +1,7 @@
 package practice.task5.impl;
 
 import org.apache.felix.scr.annotations.Component;
+import org.apache.felix.scr.annotations.Properties;
 import org.apache.felix.scr.annotations.Property;
 import org.apache.felix.scr.annotations.Service;
 import org.w3c.dom.Document;
@@ -16,11 +17,14 @@ import java.util.ArrayList;
 
 @Component (name = "AIF News")
 @Service (value = NewsTitles.class)
-@Property (name = "source", value = "aif")
+@Properties({
+        @Property (name = "source", value = "aif"),
+        @Property(name = "sourceURL", value = AIFNews.aifURL)
+})
 public class AIFNews implements NewsTitles {
-    private static final String aifURL = "http://www.aif.ru/rss/news.php";
+    static final String aifURL = "http://www.aif.ru/rss/news.php";
     
-    /* TODO: Realise titles getter from XML */
+    /* TODO: Realise error messages */
     @Override
     public String[] getTitles() {
         ArrayList<String> result = new ArrayList<>();
@@ -29,9 +33,9 @@ public class AIFNews implements NewsTitles {
             DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document document = documentBuilder.parse(url.openStream());
             NodeList nodes = document.getElementsByTagName("title");
-            for (int i = 0; i < nodes.getLength(); i++){
+            for (int i = 0; i < nodes.getLength(); i++) {
                 Node item = nodes.item(i);
-                if (!item.getParentNode().getNodeName().equals("channel")){
+                if (item.getParentNode().getNodeName().equals("item")) {
                     result.add(item.getTextContent());
                 }
             }
