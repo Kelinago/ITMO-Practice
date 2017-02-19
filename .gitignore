@@ -2,6 +2,7 @@ felix-framework-*/
 .idea/
 target/
 *.iml
+~$*
 
 # Windows image file caches
 Thumbs.db
@@ -51,3 +52,4 @@ Network Trash Folder
 Temporary Items
 .apdisk
 ~$_ITMO_practice_task_OSGi.docx
+Report.docx
