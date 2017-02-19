@@ -52,7 +52,7 @@ public class Command {
         if (!loadServiceReferences(null)) {
             return;
         }
-        int choice;
+        int choice = -1;
         do {
             System.out.println("Available sources: ");
             int i = 1;
@@ -65,7 +65,9 @@ public class Command {
             System.out.printf(" %d. All sources\n", i);
             System.out.print("  Your choice number: ");
             Scanner scanner = new Scanner(System.in);
-            choice = scanner.nextInt();
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+            }
             if (!(services.length < --choice || choice < 0)) {
                 break;
             }
@@ -88,12 +90,16 @@ public class Command {
             String[] titles = ((NewsTitles) bundleContext.getService(service)).getTitles();
             Collections.addAll(words, titles);
         }
-        System.out.println("Top-10 most frequent words in news titles (based on "
-                + (services.length > 1 ? "all sources API" : services[0].getProperty("source") + " API")
-                + "): ");
-        int i = 1;
-        for (String word : getTenMostFrequentWords(words.toArray(new String[]{}))) {
-            System.out.printf(" %2d. %s\n", i++, word);
+        if (!words.isEmpty()) {
+            System.out.println("Top-10 most frequent words in news titles (based on "
+                    + (services.length > 1 ? "all sources API" : services[0].getProperty("source") + " API")
+                    + "): ");
+            int i = 1;
+            for (String word : getTenMostFrequentWords(words.toArray(new String[]{}))) {
+                System.out.printf(" %2d. %s\n", i++, word);
+            }
+        } else {
+            System.out.println("There is no data");
         }
     }
     

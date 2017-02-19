@@ -50,6 +50,7 @@
                         <Embed-Dependency>*;scope=compile;inline=false</Embed-Dependency>
                         <Embed-Transitive>true</Embed-Transitive>
                         <Embed-StripGroup>true</Embed-StripGroup>
+                        <Require-Capability>practice.task5.api</Require-Capability>
                     </instructions>
                 </configuration>
             </plugin>

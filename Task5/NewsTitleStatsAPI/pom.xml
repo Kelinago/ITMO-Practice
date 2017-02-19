@@ -25,6 +25,7 @@
                         <Bundle-Name>${project.name}</Bundle-Name>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Export-Package>practice.task5.api</Export-Package>
+                        <Provide-Capability>practice.task5.api</Provide-Capability>
                     </instructions>
                 </configuration>
             </plugin>

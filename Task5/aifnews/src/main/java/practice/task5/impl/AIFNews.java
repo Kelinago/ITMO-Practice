@@ -11,6 +11,8 @@ import practice.task5.api.NewsTitles;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -23,7 +25,6 @@ import java.util.ArrayList;
 public class AIFNews implements NewsTitles {
     static final String aifURL = "http://www.aif.ru/rss/news.php";
     
-    /* TODO: Realise error messages */
     @Override
     public String[] getTitles() {
         ArrayList<String> result = new ArrayList<>();
@@ -35,10 +36,14 @@ public class AIFNews implements NewsTitles {
             for (int i = 0; i < nodes.getLength(); i++) {
                 Node item = nodes.item(i);
                 if (item.getParentNode().getNodeName().equals("item")) {
-                    result.add(item.getTextContent());
+                    result.add(item.getTextContent().replace("?", ""));
                 }
             }
             return result.toArray(new String[result.size()]);
+        } catch (ParserConfigurationException e) {
+            System.out.println("Can't parse from AIF API");
+        } catch (IOException e) {
+            System.out.println("AIF News: Can't open stream. Something wrong with your internet connection...");
         } catch (Exception e) {
             e.printStackTrace();
         }

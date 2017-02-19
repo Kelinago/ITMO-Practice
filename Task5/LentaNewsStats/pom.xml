@@ -51,6 +51,7 @@
                         <Export-Package>${export.package}</Export-Package>
                         <Embed-Dependency>*;scope=compile;inline=false</Embed-Dependency>
                         <Embed-Transitive>true</Embed-Transitive>
+                        <Require-Capability>practice.task5.api</Require-Capability>
                     </instructions>
                 </configuration>
             </plugin>

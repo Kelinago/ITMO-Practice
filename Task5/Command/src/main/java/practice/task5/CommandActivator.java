@@ -3,7 +3,6 @@ package practice.task5;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
-import practice.task5.Command;
 
 import java.util.Hashtable;
 

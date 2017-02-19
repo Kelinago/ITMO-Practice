@@ -41,6 +41,7 @@
                         <Bundle-Name>${project.name}</Bundle-Name>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Activator>practice.task5.CommandActivator</Bundle-Activator>
+                        <Require-Capability>practice.task5.api</Require-Capability>
                     </instructions>
                 </configuration>
             </plugin>
