@@ -14,12 +14,11 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.net.URL;
 import java.util.ArrayList;
 
-
 @Component (name = "AIF News")
 @Service (value = NewsTitles.class)
-@Properties({
+@Properties ({
         @Property (name = "source", value = "aif"),
-        @Property(name = "sourceURL", value = AIFNews.aifURL)
+        @Property (name = "sourceURL", value = AIFNews.aifURL)
 })
 public class AIFNews implements NewsTitles {
     static final String aifURL = "http://www.aif.ru/rss/news.php";

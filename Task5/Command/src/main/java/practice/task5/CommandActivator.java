@@ -1,4 +1,4 @@
-package practice;
+package practice.task5;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;

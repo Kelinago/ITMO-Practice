@@ -40,7 +40,7 @@
                     <instructions>
                         <Bundle-Name>${project.name}</Bundle-Name>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-                        <Bundle-Activator>practice.CommandActivator</Bundle-Activator>
+                        <Bundle-Activator>practice.task5.CommandActivator</Bundle-Activator>
                     </instructions>
                 </configuration>
             </plugin>
